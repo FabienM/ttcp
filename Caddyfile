@@ -1,0 +1,8 @@
+www.yourdomain.com {
+  redir https://yourdomain.com{uri}
+}
+
+yourdomain.com {
+  reverse_proxy wordpress:80
+}
+

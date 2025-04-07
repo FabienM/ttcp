@@ -1,0 +1,29 @@
+services:
+
+  wordpress:
+    image: wordpress:latest
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wpttcp
+      WORDPRESS_DB_NAME: wpttcp
+    depends_on: [db]
+    volumes:
+      - wordpress:/var/www/html
+
+  db:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MARIADB_DATABASE: wpttcp
+      MARIADB_USER: wpttcp
+      MARIADB_RANDOM_ROOT_PASSWORD: 1
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  wordpress:
+  db:
+
