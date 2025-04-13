@@ -9,9 +9,14 @@ services:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wpttcp
       WORDPRESS_DB_NAME: wpttcp
-    depends_on: [db]
+    depends_on: 
+      - db
     volumes:
       - wordpress:/var/www/html
+      - ./wordpress/entrypoint.sh:/usr/local/bin/custom-entrypoint.sh
+    entrypoint: ["/usr/local/bin/custom-entrypoint.sh"]
+    networks:
+      - web
 
   db:
     image: mariadb:latest
@@ -22,8 +27,30 @@ services:
       MARIADB_RANDOM_ROOT_PASSWORD: 1
     volumes:
       - db:/var/lib/mysql
+    networks:
+      - web
+
+  caddy:
+    image: caddy:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - web
+    depends_on:
+      - wordpress
 
 volumes:
   wordpress:
   db:
+  caddy_data:
+  caddy_config:
+
+networks:
+  web:
+    driver: bridge
 

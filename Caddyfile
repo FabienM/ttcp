@@ -1,8 +1,8 @@
-www.yourdomain.com {
-  redir https://yourdomain.com{uri}
+www.ttcp.meurillon.org {
+  redir https://ttcp.meurillon.org{uri}
 }
 
-yourdomain.com {
-  reverse_proxy wordpress:80
+ttcp.meurillon.org {
+  reverse_proxy wordpress:8080
 }
 
