@@ -1,7 +1,3 @@
-www.ttcp.meurillon.org {
-  redir https://ttcp.meurillon.org{uri}
-}
-
 ttcp.meurillon.org {
   reverse_proxy wordpress:8080
 }

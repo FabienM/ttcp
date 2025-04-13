@@ -9,6 +9,7 @@ services:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wpttcp
       WORDPRESS_DB_NAME: wpttcp
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
     depends_on: 
       - db
     volumes:
@@ -24,6 +25,7 @@ services:
     environment:
       MARIADB_DATABASE: wpttcp
       MARIADB_USER: wpttcp
+      MARIADB_PASSWORD: ${DB_PASSWORD}
       MARIADB_RANDOM_ROOT_PASSWORD: 1
     volumes:
       - db:/var/lib/mysql
