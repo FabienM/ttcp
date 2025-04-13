@@ -1,4 +1,4 @@
 ttcp.meurillon.org {
-  reverse_proxy wordpress:8080
+  reverse_proxy wordpress:80
 }
 
